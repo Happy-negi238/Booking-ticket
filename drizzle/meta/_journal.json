@@ -1,0 +1,41 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1776020665999,
+      "tag": "0000_parallel_payback",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1776025032572,
+      "tag": "0001_zippy_thunderball",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1776027439155,
+      "tag": "0002_new_the_call",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1776027526791,
+      "tag": "0003_fluffy_miss_america",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1776111979727,
+      "tag": "0004_damp_grandmaster",
+      "breakpoints": true
+    }
+  ]
+}

@@ -1,91 +1,211 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stellar Seat Booking</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap");
-      body {
-        font-family: "Outfit", sans-serif;
-        background-color: #0f172a;
-        color: #f8fafc;
-      }
-    </style>
-  </head>
-  <body
-    class="min-h-screen flex items-center justify-center p-6 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
-  >
-    <div
-      class="max-w-7xl w-full bg-slate-800/80 backdrop-blur-xl rounded-3xl shadow-2xl p-10 border border-slate-700/50"
-    >
-      <div class="text-center mb-10">
-        <h1
-          class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400 mb-4 tracking-tight"
-        >
-          ChaiCode Cinema - Now Showing<br />
-          <br />
-          <span class="text-red-400">
-            <span class="font-bold">Dhurandhar The Revenge</span>
-          </span>
-        </h1>
-        <p class="text-slate-400 text-lg">Jassi ko ghar ki yaad kyu nhi aai?</p>
-      </div>
 
-      <div class="flex justify-center mb-10">
-        <div
-          class="bg-slate-900/50 rounded-full px-6 py-3 border border-slate-700 flex gap-8 items-center"
-        >
-          <div class="flex items-center gap-3">
-            <div
-              class="w-4 h-4 rounded-full bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.6)]"
-            ></div>
-            <span class="text-slate-300 font-medium tracking-wide"
-              >Available</span
-            >
-          </div>
-          <div class="w-px h-6 bg-slate-700"></div>
-          <div class="flex items-center gap-3">
-            <div
-              class="w-4 h-4 rounded-full bg-rose-500/20 border border-rose-500/50"
-            ></div>
-            <span class="text-slate-400 font-medium tracking-wide">Booked</span>
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stellar Seat Booking</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap");
+
+    body {
+      font-family: "Outfit", sans-serif;
+      background-color: #0f172a;
+      color: #f8fafc;
+    }
+  </style>
+</head>
+
+<body
+  class="min-h-screen flex items-center justify-center p-6 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+  <div id="ticketContainer"
+    class="max-w-7xl w-full bg-slate-800/80 backdrop-blur-xl rounded-3xl shadow-2xl p-10 border border-slate-700/50 hidden"
+    id="ticketContainer">
+    <div class="text-center mb-10">
+      <h1
+        class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400 mb-4 tracking-tight">
+        ChaiCode Cinema - Now Showing<br />
+        <br />
+        <span class="text-red-400">
+          <span class="font-bold">Dhurandhar The Revenge</span>
+        </span>
+      </h1>
+      <p class="text-slate-400 text-lg">Jassi ko ghar ki yaad kyu nhi aai?</p>
+    </div>
+
+    <div class="flex justify-center mb-10">
+      <div class="bg-slate-900/50 rounded-full px-6 py-3 border border-slate-700 flex gap-8 items-center">
+        <div class="flex items-center gap-3">
+          <div class="w-4 h-4 rounded-full bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.6)]"></div>
+          <span class="text-slate-300 font-medium tracking-wide">Available</span>
         </div>
-      </div>
-
-      <div class="flex justify-center">
-        <div
-          class="bg-slate-900/40 p-8 rounded-2xl border border-slate-700/50 shadow-inner"
-        >
-          <table
-            id="tbl"
-            class="border-separate border-spacing-4 mx-auto"
-          ></table>
+        <div class="w-px h-6 bg-slate-700"></div>
+        <div class="flex items-center gap-3">
+          <div class="w-4 h-4 rounded-full bg-rose-500/20 border border-rose-500/50"></div>
+          <span class="text-slate-400 font-medium tracking-wide">Booked</span>
         </div>
       </div>
     </div>
 
-    <script>
-      async function run() {
-        const tbl = document.getElementById("tbl");
-        const res = await fetch("/seats");
-        const resarray = await res.json();
-        const j = resarray.sort((a, b) => a.id - b.id);
-        let tr;
-        for (let i = 0; i < j.length; i++) {
-          if (i % 8 === 0) tr = document.createElement("tr");
+    <div class="flex justify-center">
+      <div class="bg-slate-900/40 p-8 rounded-2xl border border-slate-700/50 shadow-inner">
+        <table id="tbl" class="border-separate border-spacing-4 mx-auto"></table>
+      </div>
+    </div>
+  </div>
 
-          const td = document.createElement("td");
+  <div id="registerFormContainer" class="w-[25%]">
+    <form action="" id="registerForm"
+      class="rounded-md py-6 px-5 flex flex-col gap-3 bg-gradient-to-br from-slate-600 via-slate-600 to-slate-800">
+      <h2 class="text-3xl text-center">Register Form</h2>
+      <div class="flex flex-col text-neutral-200">
+        <label for="">First Name</label>
+        <input class="rounded-md py-1 mt-1 outline-none bg-slate-300 text-black pl-2 font-sm" type="text" name=""
+          id="firstName" required>
+      </div>
+      <div class="flex flex-col text-neutral-300">
+        <label for="">Last Name</label>
+        <input type="text" class="rounded-md py-1 mt-1 outline-none bg-slate-300 text-black pl-2 font-sm" name=""
+          id="lastName">
+      </div>
+      <div class="flex flex-col text-neutral-300">
+        <label for="">Email-id</label>
+        <input type="text" class="rounded-md py-1 mt-1 outline-none bg-slate-300 text-black pl-2 font-sm" name=""
+          id="emailId">
+      </div>
+      <div class="flex flex-col text-neutral-300">
+        <label for="">Password</label>
+        <input type="text" class="rounded-md py-1 mt-1 outline-none bg-slate-300 text-black pl-2 font-sm" name=""
+          id="password">
+      </div>
+      <button class=" py-2 mt-4 rounded-full bg-gradient-to-br from-slate-800 via-slate-600 to-slate-800 shadow-xl">Submit</button>
+    </form>
+  </div>
 
-          // Base aesthetic classes - added 'relative group' for tooltip positioning
-          const baseClasses =
-            "w-32 h-32 rounded-2xl text-center align-middle text-2xl font-bold transition-all duration-300 select-none relative group";
+  <div class="hidden" id="loginFormContainer">
+    <form action="" id="loginForm"
+      class="rounded-md py-6 px-8 flex flex-col gap-3 bg-gradient-to-br from-slate-600 via-slate-600 to-slate-800">
+      <h2 class="text-2xl text-center">Login form</h2>
+      <div class="flex flex-col text-neutral-300">
+        <label for="">Email-id</label>
+        <input type="text" class="rounded py-1 mt-1 outline-none bg-neutral-200 text-black pl-2 font-sm" name=""
+          id="loginEmailId">
+      </div>
+      <div class="flex flex-col text-neutral-300">
+        <label for="">Password</label>
+        <input type="text" class="rounded py-1 mt-1 outline-none bg-neutral-200 text-black pl-2 font-sm" name=""
+          id="loginPassword">
+      </div>
+      <button class="bg-neutral-900 py-2 rounded-md">Submit</button>
+    </form>
+  </div>
 
-          if (j[i].isbooked) {
-            td.className = `${baseClasses} bg-rose-500/10 text-rose-500/60 border border-rose-500/20 cursor-not-allowed`;
-            td.innerHTML = `
+  <script>
+    const registerFormContainer = document.getElementById("registerFormContainer");
+    const loginFormContainer = document.getElementById("loginFormContainer");
+    const ticketContainer = document.getElementById("ticketContainer");
+
+    const registerForm = document.getElementById("registerForm");
+    const loginForm = document.getElementById("loginForm");
+
+    function show(section) {
+      registerFormContainer.classList.add("hidden");
+      ticketContainer.classList.add("hidden");
+      loginFormContainer.classList.add("hidden");
+
+      section.classList.remove("hidden");
+    }
+
+    registerForm.addEventListener("submit", async (e) => {
+
+      e.preventDefault();
+      const firstName = document.getElementById("firstName").value;
+      const lastName = document.getElementById("lastName").value;
+      const emailId = document.getElementById("emailId").value;
+      const password = document.getElementById("password").value;
+
+      try {
+        const res = await fetch("http://localhost:8080/register", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            firstName,
+            lastName,
+            email: emailId,
+            password
+          })
+        })
+
+        const fetchResponse = await res.json();
+
+        if (fetchResponse.data.status === 201) {
+          alert("Register successfully");
+          show(loginFormContainer);
+        }
+
+      } catch (error) {
+        console.log(error);
+      }
+    })
+
+
+    loginForm.addEventListener("submit", async (e) => {
+      try {
+        
+        e.preventDefault();
+        const loginEmailId = document.getElementById("loginEmailId").value;
+        const loginPassword = document.getElementById("loginPassword").value;
+
+
+        const loginRes = await fetch("http://localhost:8080/login", {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            email: loginEmailId,
+            password: loginPassword
+          })
+        })
+
+        const loginData = await loginRes.json(); 
+        
+        if (loginData.data.status === 200) {
+          alert("login successfully");
+          localStorage.setItem("token", loginData.data.accessToken);
+
+          show(ticketContainer);
+        }
+
+      } catch (error) {
+        console.log(error)
+      }
+    })
+
+  </script>
+
+  <script>
+    async function run() {
+      const tbl = document.getElementById("tbl");
+      const res = await fetch("/seats");
+      const resarray = await res.json();
+      const j = resarray.sort((a, b) => a.id - b.id);
+      let tr;
+      for (let i = 0; i < j.length; i++) {
+        if (i % 8 === 0) tr = document.createElement("tr");
+
+        const td = document.createElement("td");
+
+        // Base aesthetic classes - added 'relative group' for tooltip positioning
+        const baseClasses =
+          "w-32 h-32 rounded-2xl text-center align-middle text-2xl font-bold transition-all duration-300 select-none relative group";
+
+        if (j[i].isbooked) {
+          td.className = `${baseClasses} bg-rose-500/10 text-rose-500/60 border border-rose-500/20 cursor-not-allowed`;
+          td.innerHTML = `
                     <span class="relative z-10">${j[i].id}</span>
                     <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-4 py-2 bg-slate-900 border border-slate-700 text-sm text-slate-300 rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap shadow-2xl z-50 pointer-events-none font-normal shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
                         Booked by: <span class="font-bold text-white ml-1">${j[i].name}</span>
@@ -93,32 +213,39 @@
                         <div class="absolute top-full left-1/2 -translate-x-1/2 -mt-[2px] border-[5px] border-transparent border-t-slate-900"></div>
                     </div>
                 `;
-          } else {
-            td.className = `${baseClasses} bg-emerald-500 text-white border-2 border-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.3)] cursor-pointer hover:bg-emerald-400 hover:-translate-y-1.5 hover:shadow-[0_10px_25px_rgba(16,185,129,0.5)] active:scale-95 active:shadow-[0_0_10px_rgba(16,185,129,0.3)]`;
-            td.innerHTML = `<span class="relative z-10">${j[i].id}</span>`;
+        } else {
+          td.className = `${baseClasses} bg-emerald-500 text-white border-2 border-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.3)] cursor-pointer hover:bg-emerald-400 hover:-translate-y-1.5 hover:shadow-[0_10px_25px_rgba(16,185,129,0.5)] active:scale-95 active:shadow-[0_0_10px_rgba(16,185,129,0.3)]`;
+          td.innerHTML = `<span class="relative z-10">${j[i].id}</span>`;
+        }
+
+        td.addEventListener("click", async function (e) {
+          const currentTd = e.currentTarget;
+          if (currentTd.classList.contains("cursor-not-allowed")) {
+            return; // Seat is already taken
           }
 
-          td.addEventListener("click", async function (e) {
-            const currentTd = e.currentTarget;
-            if (currentTd.classList.contains("cursor-not-allowed")) {
-              return; // Seat is already taken
-            }
+          try {
+            const id = j[i].id; // Safe from loop closure
+            const name = prompt("Enter your name");
+            if (!name) return;
 
-            try {
-              const id = j[i].id; // Safe from loop closure
-              const name = prompt("Enter your name");
-              if (!name) return;
+            const accessToken = localStorage.getItem("token");
+            const res = await fetch(`/${id}/${name}`,
+              {
+                method: "PUT",
+                headers:{
+                  Authorization: `Bearer ${accessToken}`
+                }
+              });
+            const data = await res.json();
 
-              const res = await fetch(`/${id}/${name}`, { method: "PUT" });
-              const data = await res.json();
-
-              if (data.error) {
-                alert("FAILED! Couldn't book! already booked.");
-              } else {
-                alert("Booked successfully!");
-                // Visually transition to booked state upon success
-                currentTd.className = `${baseClasses} bg-rose-500/10 text-rose-500/60 border border-rose-500/20 cursor-not-allowed`;
-                currentTd.innerHTML = `
+            if (data.error) {
+              alert("FAILED! Couldn't book! already booked.");
+            } else {
+              alert("Booked successfully!");
+              // Visually transition to booked state upon success
+              currentTd.className = `${baseClasses} bg-rose-500/10 text-rose-500/60 border border-rose-500/20 cursor-not-allowed`;
+              currentTd.innerHTML = `
                             <span class="relative z-10">${id}</span>
                             <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-4 py-2 bg-slate-900 border border-slate-700 text-sm text-slate-300 rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap shadow-2xl z-50 pointer-events-none font-normal shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
                                 Booked by: <span class="font-bold text-white ml-1">${name}</span>
@@ -126,16 +253,18 @@
                                 <div class="absolute top-full left-1/2 -translate-x-1/2 -mt-[2px] border-[5px] border-transparent border-t-slate-900"></div>
                             </div>
                         `;
-              }
-            } catch (ex) {
-              alert("error booking " + ex);
             }
-          });
-          tr.appendChild(td);
-          tbl.appendChild(tr);
-        }
+          } catch (ex) {
+            alert("error booking " + ex);
+          }
+        });
+        tr.appendChild(td);
+        tbl.appendChild(tr);
       }
-      run();
-    </script>
-  </body>
+    }
+    run();
+  </script>
+
+</body>
+
 </html>
