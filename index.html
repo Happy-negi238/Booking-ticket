@@ -14,90 +14,118 @@
       background-color: #0f172a;
       color: #f8fafc;
     }
+
+    .gradient-3d {
+      position: relative;
+      box-shadow:
+        0 4px 20px rgba(249, 115, 22, 0.4),
+        0 8px 32px rgba(249, 115, 22, 0.3),
+        0 12px 48px rgba(249, 115, 22, 0.2),
+        inset 0 1px 2px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .gradient-3d::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      border-radius: 50%;
+    }
+
+    .gradient-3d::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(10deg, transparent, rgba(249, 115, 22, 0.9), transparent);
+      border-radius: 50%;
+    }
   </style>
 </head>
 
 <body
-  class="min-h-screen flex items-center justify-center p-6 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-  <div id="ticketContainer"
-    class="max-w-7xl w-full bg-slate-800/80 backdrop-blur-xl rounded-3xl shadow-2xl p-10 border border-slate-700/50 hidden"
-    id="ticketContainer">
-    <div class="text-center mb-10">
-      <h1
-        class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400 mb-4 tracking-tight">
-        ChaiCode Cinema - Now Showing<br />
-        <br />
-        <span class="text-red-400">
-          <span class="font-bold">Dhurandhar The Revenge</span>
-        </span>
-      </h1>
-      <p class="text-slate-400 text-lg">Jassi ko ghar ki yaad kyu nhi aai?</p>
-    </div>
+  class=" min-h-screen flex items-center justify-center p-6 bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-950">
+  <div id="ticketContainer" class="hidden  max-w-7xl w-full bg-neutral-800/50 backdrop-blur-xl rounded-xl shadow-2xl p-10 border border-neutral-600/50
+    shadow-[0_6px_10px_rgba(255,140,0,0.2)]" id="ticketContainer">
 
-    <div class="flex justify-center mb-10">
-      <div class="bg-slate-900/50 rounded-full px-6 py-3 border border-slate-700 flex gap-8 items-center">
-        <div class="flex items-center gap-3">
-          <div class="w-4 h-4 rounded-full bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.6)]"></div>
-          <span class="text-slate-300 font-medium tracking-wide">Available</span>
-        </div>
-        <div class="w-px h-6 bg-slate-700"></div>
-        <div class="flex items-center gap-3">
-          <div class="w-4 h-4 rounded-full bg-rose-500/20 border border-rose-500/50"></div>
-          <span class="text-slate-400 font-medium tracking-wide">Booked</span>
-        </div>
-      </div>
+    <div class="text-center mb-10 flex flex-col gap-4">
+      <h1
+        class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-500 mb-4 tracking-tight">
+        Chaicode Cinema
+      </h1>
+      <h3 class="text-2xl text-neutral-300">Dhurandar the Revenge</h3>
+      <div class="gradient-3d mx-auto w-[40%] h-2 rounded-full mt-4"></div>
     </div>
 
     <div class="flex justify-center">
-      <div class="bg-slate-900/40 p-8 rounded-2xl border border-slate-700/50 shadow-inner">
-        <table id="tbl" class="border-separate border-spacing-4 mx-auto"></table>
+      <div class=" p-8">
+        <table id="tbl" class="border-separate border-spacing-1 mx-auto max-w-2xl w-full"></table>
       </div>
     </div>
   </div>
 
-  <div id="registerFormContainer" class="w-[25%]">
+  <div id="registerFormContainer" class=" w-[27%]">
     <form action="" id="registerForm"
-      class="rounded-md py-6 px-5 flex flex-col gap-3 bg-gradient-to-br from-slate-600 via-slate-600 to-slate-800">
-      <h2 class="text-3xl text-center">Register Form</h2>
+      class="rounded-xl border border-neutral-700 pb-8 pt-2 px-5 flex flex-col gap-4 bg-[#1a1a1a]">
+      <p>
+      <h2 class="text-3xl text-center text-[#fefefe]">Sign up</h2>
+      <p class="text-center">Create your account to get started</p>
+      </p>
       <div class="flex flex-col text-neutral-200">
-        <label for="">First Name</label>
-        <input class="rounded-md py-1 mt-1 outline-none bg-slate-300 text-black pl-2 font-sm" type="text" name=""
-          id="firstName" required>
+        <label for="" class="font-md">First Name</label>
+        <input autocomplete="off"
+          class="rounded-md bg-neutral-900 border border-neutral-700 py-1 mt-1 outline-none text-white pl-3 font-sm placeholder-neutral-600"
+          type="text" name="" id="firstName" required placeholder="John">
       </div>
+
       <div class="flex flex-col text-neutral-300">
         <label for="">Last Name</label>
-        <input type="text" class="rounded-md py-1 mt-1 outline-none bg-slate-300 text-black pl-2 font-sm" name=""
-          id="lastName">
+        <input type="text" autocomplete="off"
+          class="rounded-md py-1 mt-1 outline-none bg-neutral-900 border border-neutral-700 text-white pl-3 font-sm placeholder-neutral-600"
+          name="" id="lastName" placeholder="Doe">
       </div>
+
       <div class="flex flex-col text-neutral-300">
         <label for="">Email-id</label>
-        <input type="text" class="rounded-md py-1 mt-1 outline-none bg-slate-300 text-black pl-2 font-sm" name=""
-          id="emailId">
+        <input type="text" autocomplete="off"
+          class="rounded-md py-1 mt-1 outline-none bg-neutral-900 border border-neutral-700 text- pl-3 font-sm placeholder-neutral-600"
+          name="" id="emailId" placeholder="johndoe@gmail.com">
       </div>
+
       <div class="flex flex-col text-neutral-300">
         <label for="">Password</label>
-        <input type="text" class="rounded-md py-1 mt-1 outline-none bg-slate-300 text-black pl-2 font-sm" name=""
-          id="password">
+        <input type="password" autocomplete="off"
+          class="rounded-md py-1 mt-1 outline-none bg-neutral-900 border border-neutral-700  text- pl-3 font-sm placeholder-neutral-600"
+          name="" id="password" placeholder="********">
       </div>
-      <button class=" py-2 mt-4 rounded-full bg-gradient-to-br from-slate-800 via-slate-600 to-slate-800 shadow-xl">Submit</button>
+
+      <button class="py-2 mt-4 rounded-full bg-neutral-300 text-neutral-800 font-semibold">Submit</button>
     </form>
   </div>
 
-  <div class="hidden" id="loginFormContainer">
+  <div id="loginFormContainer" class="w-[20%] mx-auto hidden">
     <form action="" id="loginForm"
-      class="rounded-md py-6 px-8 flex flex-col gap-3 bg-gradient-to-br from-slate-600 via-slate-600 to-slate-800">
-      <h2 class="text-2xl text-center">Login form</h2>
+      class="rounded-xl py-6 px-4 flex flex-col gap-3 border border-neutral-700 bg-[#1a1a1a]">
+      <h2 class="text-2xl text-center">Login</h2>
       <div class="flex flex-col text-neutral-300">
         <label for="">Email-id</label>
-        <input type="text" class="rounded py-1 mt-1 outline-none bg-neutral-200 text-black pl-2 font-sm" name=""
-          id="loginEmailId">
+        <input type="text" autocomplete="off"
+          class="rounded-md bg-neutral-900 border border-neutral-700 py-1 mt-1 outline-none text-white pl-3 font-sm placeholder-neutral-600"
+          name="" id="loginEmailId" placeholder="johndoe@gmail.com" required>
       </div>
       <div class="flex flex-col text-neutral-300">
         <label for="">Password</label>
-        <input type="text" class="rounded py-1 mt-1 outline-none bg-neutral-200 text-black pl-2 font-sm" name=""
-          id="loginPassword">
+        <input type="password" autocomplete="off"
+          class="rounded-md bg-neutral-900 border border-neutral-700 py-1 mt-1 outline-none text-white pl-3 font-sm placeholder-neutral-600"
+          name="" id="loginPassword" placeholder="********" required>
       </div>
-      <button class="bg-neutral-900 py-2 rounded-md">Submit</button>
+      <button class="py-2 mt-4 rounded-full bg-neutral-300 text-neutral-800 font-semibold">Submit</button>
     </form>
   </div>
 
@@ -154,7 +182,7 @@
 
     loginForm.addEventListener("submit", async (e) => {
       try {
-        
+
         e.preventDefault();
         const loginEmailId = document.getElementById("loginEmailId").value;
         const loginPassword = document.getElementById("loginPassword").value;
@@ -171,8 +199,8 @@
           })
         })
 
-        const loginData = await loginRes.json(); 
-        
+        const loginData = await loginRes.json();
+
         if (loginData.data.status === 200) {
           alert("login successfully");
           localStorage.setItem("token", loginData.data.accessToken);
@@ -193,29 +221,43 @@
       const res = await fetch("/seats");
       const resarray = await res.json();
       const j = resarray.sort((a, b) => a.id - b.id);
+      const seatsPerRow = 8; // Number of seats per row - change this if needed
+      const mid = Math.floor(seatsPerRow / 2);
       let tr;
+      let rowIndex = 0;
       for (let i = 0; i < j.length; i++) {
-        if (i % 8 === 0) tr = document.createElement("tr");
+        if (i % seatsPerRow === 0) {
+          tr = document.createElement("tr");
+          rowIndex = 0;
+        }
 
         const td = document.createElement("td");
 
         // Base aesthetic classes - added 'relative group' for tooltip positioning
         const baseClasses =
-          "w-32 h-32 rounded-2xl text-center align-middle text-2xl font-bold transition-all duration-300 select-none relative group";
+          "w-12 h-12 rounded text-center align-middle text-2xl font-bold transition-all duration-300 select-none relative group";
 
         if (j[i].isbooked) {
-          td.className = `${baseClasses} bg-rose-500/10 text-rose-500/60 border border-rose-500/20 cursor-not-allowed`;
+          td.className = `${baseClasses} bg-rose-700/80 text-rose-400/90 border border-rose-500/20 cursor-not-allowed font
+          text-md`;
           td.innerHTML = `
                     <span class="relative z-10">${j[i].id}</span>
-                    <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-4 py-2 bg-slate-900 border border-slate-700 text-sm text-slate-300 rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap shadow-2xl z-50 pointer-events-none font-normal shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
-                        Booked by: <span class="font-bold text-white ml-1">${j[i].name}</span>
-                        <div class="absolute top-full left-1/2 -translate-x-1/2 -mt-[1px] border-[6px] border-transparent border-t-slate-700"></div>
-                        <div class="absolute top-full left-1/2 -translate-x-1/2 -mt-[2px] border-[5px] border-transparent border-t-slate-900"></div>
+                    <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-4 py-2 bg-neutral-900 
+                      border border-slate-700 text-sm text-slate-300 rounded-xl opacity-0 invisible 
+                      group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap 
+                      shadow-2xl z-50 pointer-events-none font-normal shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
+
+                        Booked by: <span class="text-white ml-1">${j[i].name}</span>
+                        <div class="absolute top-full left-1/2 -translate-x-1/2 -mt-[1px] border-[6px] border-transparent border-t-neutral-700"></div>
+                        <div class="absolute top-full left-1/2 -translate-x-1/2 -mt-[2px] border-[5px] border-transparent border-t-neutral-900"></div>
                     </div>
                 `;
         } else {
-          td.className = `${baseClasses} bg-emerald-500 text-white border-2 border-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.3)] cursor-pointer hover:bg-emerald-400 hover:-translate-y-1.5 hover:shadow-[0_10px_25px_rgba(16,185,129,0.5)] active:scale-95 active:shadow-[0_0_10px_rgba(16,185,129,0.3)]`;
-          td.innerHTML = `<span class="relative z-10">${j[i].id}</span>`;
+          td.className = `${baseClasses} bg-neutral-800/80 text-white border border-neutral-600 
+          shadow-[0_0_20px_rgba(0,0,0,0.3)] cursor-pointer hover:bg-green-300/70 
+          hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(16,185,129,0.2)] 
+          active:scale-95 active:shadow-[0_0_10px_rgba(16,185,129,0.3)]`;
+          td.innerHTML = `<span class="relative z-10 text-sm"></span>`;
         }
 
         td.addEventListener("click", async function (e) {
@@ -233,7 +275,7 @@
             const res = await fetch(`/${id}/${name}`,
               {
                 method: "PUT",
-                headers:{
+                headers: {
                   Authorization: `Bearer ${accessToken}`
                 }
               });
@@ -247,7 +289,10 @@
               currentTd.className = `${baseClasses} bg-rose-500/10 text-rose-500/60 border border-rose-500/20 cursor-not-allowed`;
               currentTd.innerHTML = `
                             <span class="relative z-10">${id}</span>
-                            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-4 py-2 bg-slate-900 border border-slate-700 text-sm text-slate-300 rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap shadow-2xl z-50 pointer-events-none font-normal shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
+                            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-4 py-2 bg-slate-900 border border-slate-700 
+                            text-sm text-slate-300 rounded-xl opacity-0 invisible group-hover:opacity-100 
+                            group-hover:visible transition-all duration-200 whitespace-nowrap shadow-2xl z-50 pointer-events-none 
+                            font-normal shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
                                 Booked by: <span class="font-bold text-white ml-1">${name}</span>
                                 <div class="absolute top-full left-1/2 -translate-x-1/2 -mt-[1px] border-[6px] border-transparent border-t-slate-700"></div>
                                 <div class="absolute top-full left-1/2 -translate-x-1/2 -mt-[2px] border-[5px] border-transparent border-t-slate-900"></div>
@@ -259,7 +304,15 @@
           }
         });
         tr.appendChild(td);
-        tbl.appendChild(tr);
+        rowIndex++;
+        if (rowIndex === mid) {
+          const spacer = document.createElement("td");
+          spacer.className = "w-8";
+          tr.appendChild(spacer);
+        }
+        if ((i + 1) % seatsPerRow === 0) {
+          tbl.appendChild(tr);
+        }
       }
     }
     run();
